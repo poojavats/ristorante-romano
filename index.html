@@ -4049,10 +4049,53 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // Form submission
+        // Form submission - Send to WhatsApp
         document.getElementById('reservationForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            alert('Thank you for your reservation request! We will contact you shortly to confirm.');
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const guests = document.getElementById('guests').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            const occasion = document.getElementById('occasion').value;
+            const message = document.getElementById('message').value;
+            
+            // Format date nicely
+            const formattedDate = new Date(date).toLocaleDateString('en-IE', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            
+            // Calculate deposit
+            const guestCount = guests === '7+' ? 7 : parseInt(guests);
+            const deposit = guestCount * 10;
+            
+            // Build WhatsApp message
+            let whatsappMessage = `🍽️ *NEW RESERVATION REQUEST*\n\n`;
+            whatsappMessage += `👤 *Name:* ${name}\n`;
+            whatsappMessage += `📧 *Email:* ${email}\n`;
+            whatsappMessage += `📞 *Phone:* ${phone}\n`;
+            whatsappMessage += `👥 *Guests:* ${guests}\n`;
+            whatsappMessage += `📅 *Date:* ${formattedDate}\n`;
+            whatsappMessage += `🕐 *Time:* ${time}\n`;
+            if (occasion) whatsappMessage += `🎉 *Occasion:* ${occasion}\n`;
+            if (message) whatsappMessage += `📝 *Requests:* ${message}\n`;
+            whatsappMessage += `\n💰 *Deposit Required:* €${deposit} (€10 x ${guests} guests)`;
+            
+            // Encode and open WhatsApp
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            const whatsappURL = `https://wa.me/353874430140?text=${encodedMessage}`;
+            
+            // Open WhatsApp in new tab
+            window.open(whatsappURL, '_blank');
+            
+            // Show confirmation
+            alert('Redirecting to WhatsApp to complete your reservation...');
             e.target.reset();
         });
 
