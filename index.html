@@ -1,0 +1,4104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ristorante Romano Carrigaline | Authentic Italian Cuisine</title>
+    <meta name="description" content="Experience authentic Italian cuisine at Ristorante Romano Carrigaline. Fresh pasta, wood-fired pizza, seafood & more. Book your table today!">
+    <meta name="keywords" content="Italian restaurant, Carrigaline, Cork, Italian cuisine, pizza, pasta, seafood">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Ristorante Romano Carrigaline">
+    <meta property="og:description" content="Authentic Italian Cuisine in the heart of Cork">
+    <meta property="og:type" content="restaurant">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lato:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --burgundy: #8B2635;
+            --burgundy-dark: #5C1A24;
+            --burgundy-light: #A63446;
+            --gold: #D4AF37;
+            --gold-light: #E8D5A3;
+            --gold-dark: #B8960C;
+            --cream: #FFFEF9;
+            --cream-dark: #F7F3E9;
+            --charcoal: #1A1A1A;
+            --charcoal-light: #2D2D2D;
+            --olive: #4A5D23;
+            --terracotta: #C75B39;
+            --white: #FFFFFF;
+            --shadow: rgba(0,0,0,0.1);
+            --shadow-dark: rgba(0,0,0,0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--cream);
+            color: var(--charcoal);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--burgundy-dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .preloader-logo {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem;
+            color: var(--gold);
+            margin-bottom: 2rem;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        .preloader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(212, 175, 55, 0.3);
+            border-top-color: var(--gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.15s ease, background 0.15s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor.hover {
+            transform: translate(-50%, -50%) scale(1.5);
+            background: rgba(212, 175, 55, 0.2);
+        }
+
+        /* Floating Elements */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .floating-leaf {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.1;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(5deg); }
+            50% { transform: translateY(0) rotate(0deg); }
+            75% { transform: translateY(20px) rotate(-5deg); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: transparent;
+        }
+
+        nav.scrolled {
+            background: rgba(255, 254, 249, 0.98);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+            padding: 1rem 5%;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-icon:hover {
+            transform: rotate(15deg);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--cream);
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .logo span {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.2rem;
+            color: var(--gold);
+            display: block;
+            margin-top: -5px;
+        }
+
+        nav.scrolled .logo {
+            color: var(--burgundy);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--cream);
+            text-decoration: none;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s;
+        }
+
+        nav.scrolled .nav-links a {
+            color: var(--charcoal);
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::before {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--charcoal) !important;
+            padding: 0.8rem 1.8rem !important;
+            border-radius: 30px;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease !important;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .nav-cta::before {
+            display: none !important;
+        }
+
+        /* Mobile menu */
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 10px;
+        }
+
+        .mobile-toggle span {
+            width: 28px;
+            height: 2px;
+            background: var(--cream);
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        nav.scrolled .mobile-toggle span {
+            background: var(--charcoal);
+        }
+
+        .mobile-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .mobile-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            min-height: 800px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-video-container {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+        }
+
+        .hero-video-container::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(92, 26, 36, 0.85) 0%, rgba(139, 38, 53, 0.75) 50%, rgba(92, 26, 36, 0.85) 100%);
+        }
+
+        .hero-bg-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: slowZoom 30s ease-in-out infinite alternate;
+        }
+
+        @keyframes slowZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        .hero-pattern {
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30L30 0z' fill='none' stroke='%23D4AF37' stroke-width='0.3' opacity='0.15'/%3E%3C/svg%3E");
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem;
+            max-width: 900px;
+        }
+
+        .hero-decorative {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.2s forwards;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.6rem 1.5rem;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.4s forwards;
+            border-radius: 30px;
+        }
+
+        .hero-badge::before,
+        .hero-badge::after {
+            content: '◆';
+            font-size: 0.5rem;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3.5rem, 10vw, 8rem);
+            font-weight: 500;
+            color: var(--cream);
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        .hero h1 .highlight {
+            font-family: 'Great Vibes', cursive;
+            font-size: 0.6em;
+            color: var(--gold);
+            display: block;
+            font-weight: 400;
+            margin-top: 0.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--gold-light);
+            letter-spacing: 3px;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.8s forwards;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 1s ease 1s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn {
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--charcoal);
+            border: none;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--cream);
+            border: 2px solid var(--cream);
+            border-radius: 50px;
+        }
+
+        .btn-secondary:hover {
+            background: var(--cream);
+            color: var(--burgundy);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 2;
+        }
+
+        .scroll-text {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            writing-mode: vertical-rl;
+            margin-bottom: 1rem;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+            animation: scrollLine 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollLine {
+            0%, 100% { transform: scaleY(1); opacity: 1; }
+            50% { transform: scaleY(0.5); opacity: 0.5; }
+        }
+
+        /* Announcement Bar */
+        .announcement-bar {
+            background: linear-gradient(90deg, var(--burgundy-dark), var(--burgundy), var(--burgundy-dark));
+            color: var(--cream);
+            padding: 0.8rem 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .announcement-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            to { left: 100%; }
+        }
+
+        .announcement-bar span {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 8rem 5%;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 5rem;
+        }
+
+        .section-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: bounce 2s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .section-tag {
+            font-size: 0.8rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .section-tag::before,
+        .section-tag::after {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 500;
+            color: var(--burgundy);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .section-desc {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.9;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--cream);
+            overflow: hidden;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .about-images {
+            position: relative;
+            height: 600px;
+        }
+
+        .about-img {
+            position: absolute;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .about-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .about-img:hover img {
+            transform: scale(1.1);
+        }
+
+        .about-img-1 {
+            width: 60%;
+            height: 70%;
+            top: 0;
+            left: 0;
+            z-index: 2;
+        }
+
+        .about-img-2 {
+            width: 50%;
+            height: 50%;
+            bottom: 0;
+            right: 0;
+            z-index: 1;
+            border: 8px solid var(--cream);
+        }
+
+        .about-img-3 {
+            width: 35%;
+            height: 35%;
+            bottom: 20%;
+            left: 40%;
+            z-index: 3;
+            border: 8px solid var(--cream);
+        }
+
+        .experience-badge {
+            position: absolute;
+            top: 50%;
+            right: -20px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--charcoal);
+            padding: 2rem;
+            text-align: center;
+            z-index: 4;
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.3);
+        }
+
+        .experience-badge .number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            display: block;
+            line-height: 1;
+        }
+
+        .experience-badge .text {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 0.5rem;
+        }
+
+        .about-content {
+            padding: 2rem 0;
+        }
+
+        .about-content .section-tag {
+            justify-content: flex-start;
+        }
+
+        .about-content .section-title {
+            text-align: left;
+        }
+
+        .about-signature {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: var(--burgundy);
+            margin-top: 2rem;
+        }
+
+        .about-text {
+            color: #555;
+            line-height: 2;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--cream-dark);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .about-feature:hover {
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transform: translateY(-3px);
+        }
+
+        .about-feature-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .about-feature span {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--charcoal);
+        }
+
+        /* Specialties Strip */
+        .specialties-strip {
+            background: var(--charcoal);
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .specialties-marquee {
+            display: flex;
+            animation: marquee 30s linear infinite;
+        }
+
+        .specialties-marquee:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .specialty-strip-item {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            padding: 2rem 3rem;
+            white-space: nowrap;
+        }
+
+        .specialty-strip-item span {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--cream);
+            letter-spacing: 2px;
+        }
+
+        .specialty-strip-item .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+
+        /* Category Cards */
+        .categories {
+            background: linear-gradient(180deg, var(--cream-dark) 0%, var(--cream) 100%);
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .category-card {
+            position: relative;
+            height: 450px;
+            overflow: hidden;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .category-card:hover img {
+            transform: scale(1.15);
+        }
+
+        .category-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(26, 26, 26, 0.95) 0%, rgba(26, 26, 26, 0.4) 40%, transparent 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+        }
+
+        .category-card:hover .category-card-overlay {
+            background: linear-gradient(to top, rgba(139, 38, 53, 0.95) 0%, rgba(139, 38, 53, 0.6) 50%, rgba(139, 38, 53, 0.3) 100%);
+        }
+
+        .category-card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s ease 0.1s;
+        }
+
+        .category-card:hover .category-card-icon {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .category-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--cream);
+            margin-bottom: 0.5rem;
+        }
+
+        .category-card p {
+            color: var(--gold-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s ease 0.15s;
+        }
+
+        .category-card:hover p {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .category-card-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--gold);
+            color: var(--charcoal);
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 30px;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s ease 0.2s;
+        }
+
+        .category-card:hover .category-card-btn {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .category-card-btn:hover {
+            background: var(--cream);
+        }
+
+        .category-card-btn svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .category-card-btn:hover svg {
+            transform: translateX(5px);
+        }
+
+        .category-card.large {
+            grid-column: span 2;
+            height: 500px;
+        }
+
+        /* Chef Section */
+        .chef-section {
+            background: var(--burgundy);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chef-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            border: 100px solid rgba(212, 175, 55, 0.05);
+            border-radius: 50%;
+        }
+
+        .chef-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .chef-content .section-tag {
+            color: var(--gold-light);
+            justify-content: flex-start;
+        }
+
+        .chef-content .section-tag::before,
+        .chef-content .section-tag::after {
+            background: var(--gold-light);
+        }
+
+        .chef-content .section-title {
+            color: var(--cream);
+            text-align: left;
+        }
+
+        .chef-content p {
+            color: var(--gold-light);
+            line-height: 2;
+            font-size: 1.05rem;
+        }
+
+        .chef-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-style: italic;
+            color: var(--cream);
+            margin: 2rem 0;
+            padding-left: 2rem;
+            border-left: 3px solid var(--gold);
+            line-height: 1.6;
+        }
+
+        .chef-signature {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: var(--gold);
+        }
+
+        .chef-image {
+            position: relative;
+        }
+
+        .chef-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+        }
+
+        .chef-badge {
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            background: var(--gold);
+            color: var(--charcoal);
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .chef-badge-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .chef-badge-text {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Menu Section */
+        .menu {
+            background: var(--cream);
+        }
+
+        .menu-tabs-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            background: var(--cream-dark);
+            padding: 0.5rem;
+            border-radius: 50px;
+        }
+
+        .menu-tab {
+            padding: 1rem 2rem;
+            border: none;
+            background: transparent;
+            color: var(--charcoal);
+            font-family: 'Lato', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 30px;
+        }
+
+        .menu-tab:hover {
+            color: var(--burgundy);
+        }
+
+        .menu-tab.active {
+            background: var(--burgundy);
+            color: var(--cream);
+        }
+
+        .dietary-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .dietary-filter {
+            padding: 0.6rem 1.2rem;
+            border: 2px solid #ddd;
+            background: white;
+            color: #666;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .dietary-filter:hover {
+            border-color: var(--olive);
+            color: var(--olive);
+        }
+
+        .dietary-filter.active {
+            background: var(--olive);
+            border-color: var(--olive);
+            color: white;
+        }
+
+        .dietary-filter[data-filter="vegan"].active {
+            background: #7B1FA2;
+            border-color: #7B1FA2;
+        }
+
+        .dietary-filter[data-filter="gluten-free"].active {
+            background: #E65100;
+            border-color: #E65100;
+        }
+
+        .dietary-filter[data-filter="all"].active {
+            background: var(--burgundy);
+            border-color: var(--burgundy);
+        }
+
+        .menu-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .menu-category {
+            display: none;
+        }
+
+        .menu-category.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem 4rem;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .menu-item:hover {
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+        }
+
+        .menu-item.hidden {
+            display: none;
+        }
+
+        .menu-item-info {
+            flex: 1;
+        }
+
+        .menu-item h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--burgundy);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .menu-item p {
+            font-size: 0.9rem;
+            color: #777;
+            line-height: 1.6;
+        }
+
+        .menu-item .price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--gold-dark);
+            margin-left: 1.5rem;
+            white-space: nowrap;
+        }
+
+        .menu-dietary-tag {
+            font-size: 0.6rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 20px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .tag-vegetarian {
+            background: #E8F5E9;
+            color: #2E7D32;
+        }
+
+        .tag-vegan {
+            background: #F3E5F5;
+            color: #7B1FA2;
+        }
+
+        .tag-gluten-free {
+            background: #FFF3E0;
+            color: #E65100;
+        }
+
+        .menu-note {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, var(--cream-dark) 0%, white 100%);
+            border-radius: 20px;
+            border-left: 5px solid var(--gold);
+        }
+
+        .menu-note p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .menu-subcategory {
+            text-align: center;
+            color: var(--burgundy);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            margin: 3rem 0 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .menu-subcategory:first-of-type {
+            margin-top: 1rem;
+        }
+
+        .menu-note-inline {
+            text-align: center;
+            color: var(--burgundy);
+            font-weight: 600;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--gold-light) 0%, #fff9e6 100%);
+            border-radius: 10px;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background: var(--charcoal);
+            padding: 8rem 0;
+        }
+
+        .gallery .section-tag {
+            color: var(--gold);
+        }
+
+        .gallery .section-tag::before,
+        .gallery .section-tag::after {
+            background: var(--gold);
+        }
+
+        .gallery .section-title {
+            color: var(--cream);
+        }
+
+        .gallery .section-desc {
+            color: #aaa;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            padding: 0 5%;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            border-radius: 15px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.15);
+        }
+
+        .gallery-item-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(139, 38, 53, 0.8) 0%, transparent 60%);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-item-overlay {
+            opacity: 1;
+        }
+
+        .gallery-item-overlay span {
+            color: var(--cream);
+            font-size: 2rem;
+        }
+
+        .gallery-item:nth-child(1),
+        .gallery-item:nth-child(6) {
+            grid-column: span 2;
+            grid-row: span 2;
+            border-radius: 20px;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: linear-gradient(135deg, var(--cream-dark) 0%, var(--cream) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials::before {
+            content: '"';
+            position: absolute;
+            top: 10%;
+            left: 5%;
+            font-family: 'Playfair Display', serif;
+            font-size: 30rem;
+            color: var(--gold);
+            opacity: 0.05;
+            line-height: 1;
+        }
+
+        .testimonial-slider {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .testimonial-stars {
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            letter-spacing: 5px;
+        }
+
+        .testimonial-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-style: italic;
+            color: var(--charcoal);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .testimonial-author-name {
+            font-weight: 700;
+            color: var(--burgundy);
+            font-size: 1.1rem;
+        }
+
+        .testimonial-author-location {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .testimonial-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-dot.active {
+            background: var(--gold);
+            transform: scale(1.2);
+        }
+
+        /* Take Away Section */
+        .takeaway {
+            background: linear-gradient(135deg, var(--cream-dark) 0%, var(--cream) 100%);
+            padding: 5rem 5%;
+        }
+
+        .takeaway-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .takeaway-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .takeaway-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--burgundy);
+            margin-bottom: 1rem;
+        }
+
+        .takeaway-info p {
+            color: var(--charcoal-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .takeaway-features {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .takeaway-feature {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 2px 10px var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .takeaway-feature:hover {
+            transform: translateX(10px);
+        }
+
+        .takeaway-feature-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-light) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .takeaway-feature-text h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--charcoal);
+            margin-bottom: 0.25rem;
+        }
+
+        .takeaway-feature-text p {
+            font-size: 0.9rem;
+            color: var(--charcoal-light);
+            margin: 0;
+        }
+
+        .takeaway-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .takeaway-cta .btn-whatsapp {
+            background: #25D366;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .takeaway-cta .btn-whatsapp:hover {
+            background: #128C7E;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .takeaway-cta .btn-call {
+            background: var(--burgundy);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .takeaway-cta .btn-call:hover {
+            background: var(--burgundy-dark);
+            transform: translateY(-3px);
+        }
+
+        .takeaway-image {
+            position: relative;
+        }
+
+        .takeaway-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px var(--shadow-dark);
+        }
+
+        .takeaway-badge {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--charcoal);
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .takeaway-badge span:first-child {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .takeaway-badge span:last-child {
+            font-size: 1.4rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Deposit Notice Styles */
+        .deposit-notice {
+            background: linear-gradient(135deg, var(--gold-light) 0%, rgba(212, 175, 55, 0.3) 100%);
+            border: 2px solid var(--gold);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .deposit-notice h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--burgundy-dark);
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .deposit-notice p {
+            color: var(--charcoal);
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .deposit-notice .highlight {
+            font-weight: 700;
+            color: var(--burgundy);
+        }
+
+        .deposit-notice .refund-policy {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .deposit-notice .refund-policy strong {
+            color: var(--olive);
+        }
+
+        @media (max-width: 768px) {
+            .takeaway-content {
+                grid-template-columns: 1fr;
+            }
+
+            .takeaway-badge {
+                width: 100px;
+                height: 100px;
+                top: -15px;
+                right: -15px;
+            }
+
+            .takeaway-badge span:last-child {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Reservation Section */
+        .reservation {
+            background: linear-gradient(135deg, var(--burgundy-dark) 0%, var(--burgundy) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reservation::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            border: 80px solid rgba(212, 175, 55, 0.08);
+            border-radius: 50%;
+        }
+
+        .reservation::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            border: 60px solid rgba(212, 175, 55, 0.05);
+            border-radius: 50%;
+        }
+
+        .reservation-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .reservation-info {
+            padding: 2rem 0;
+        }
+
+        .reservation-info .section-tag {
+            color: var(--gold-light);
+            justify-content: flex-start;
+        }
+
+        .reservation-info .section-tag::before,
+        .reservation-info .section-tag::after {
+            background: var(--gold-light);
+        }
+
+        .reservation-info .section-title {
+            color: var(--cream);
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+
+        .reservation-info > p {
+            color: var(--gold-light);
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateX(10px);
+        }
+
+        .contact-item-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-item-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--charcoal);
+        }
+
+        .contact-item-content h4 {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item-content p {
+            color: var(--cream);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .contact-item-content a {
+            color: var(--cream);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item-content a:hover {
+            color: var(--gold);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2.5rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--gold);
+            color: var(--charcoal);
+            transform: translateY(-5px);
+        }
+
+        .social-link svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .reservation-form {
+            background: var(--cream);
+            padding: 3.5rem;
+            border-radius: 25px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
+
+        .form-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--burgundy);
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .form-subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 2.5rem;
+            font-size: 0.95rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group.full {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--charcoal);
+            margin-bottom: 0.8rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1.2rem 1.5rem;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            background: white;
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+            color: var(--charcoal);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 1.3rem;
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--cream);
+            border: none;
+            border-radius: 50px;
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(139, 38, 53, 0.3);
+        }
+
+        .form-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(139, 38, 53, 0.4);
+        }
+
+        /* Hours Section */
+        .hours {
+            background: var(--cream-dark);
+        }
+
+        .hours-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .hours-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .hours-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+        }
+
+        .hours-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+        }
+
+        .hours-card-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hours-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--burgundy);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .hours-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .hours-item:last-child {
+            border-bottom: none;
+        }
+
+        .hours-day {
+            font-weight: 600;
+            color: var(--charcoal);
+        }
+
+        .hours-time {
+            color: var(--burgundy);
+            font-weight: 500;
+        }
+
+        /* Map Section */
+        .map-section {
+            height: 500px;
+            position: relative;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            filter: grayscale(20%) contrast(1.1);
+        }
+
+        .map-overlay {
+            position: absolute;
+            bottom: 4rem;
+            left: 5%;
+            background: var(--cream);
+            padding: 2.5rem 3rem;
+            max-width: 400px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+
+        .map-overlay h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--burgundy);
+            margin-bottom: 1rem;
+        }
+
+        .map-overlay p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .directions-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gold-dark);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .directions-btn:hover {
+            color: var(--burgundy);
+            gap: 1rem;
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            background: linear-gradient(135deg, var(--charcoal) 0%, var(--charcoal-light) 100%);
+            padding: 5rem;
+            text-align: center;
+        }
+
+        .newsletter-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--cream);
+            margin-bottom: 1rem;
+        }
+
+        .newsletter p {
+            color: #aaa;
+            margin-bottom: 2rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 1.2rem 1.5rem;
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 50px;
+            background: rgba(255,255,255,0.05);
+            color: var(--cream);
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+        }
+
+        .newsletter-form input::placeholder {
+            color: #888;
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .newsletter-form button {
+            padding: 1.2rem 2.5rem;
+            background: var(--gold);
+            color: var(--charcoal);
+            border: none;
+            border-radius: 50px;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background: var(--cream);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: var(--cream);
+            padding: 5rem 5% 2rem;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            max-width: 1400px;
+            margin: 0 auto 4rem;
+        }
+
+        .footer-brand .logo {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            color: var(--cream);
+        }
+
+        .footer-brand p {
+            color: #888;
+            line-height: 1.9;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #444;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .footer-column h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--cream);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column a {
+            color: #888;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-column a:hover {
+            color: var(--gold);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-bottom-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-bottom-links a:hover {
+            color: var(--gold);
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--burgundy);
+            color: var(--cream);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            z-index: 999;
+            box-shadow: 0 5px 20px rgba(139, 38, 53, 0.3);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--gold);
+            color: var(--charcoal);
+            transform: translateY(-5px);
+        }
+
+        .back-to-top svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            z-index: 999;
+            box-shadow: 0 5px 25px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+        }
+
+        .whatsapp-btn svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            padding: 2rem;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: transparent;
+            border: 2px solid var(--cream);
+            border-radius: 50%;
+            color: var(--cream);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            background: var(--cream);
+            color: var(--charcoal);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .category-card.large {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .about-grid,
+            .chef-grid,
+            .reservation-container {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+
+            .about-images {
+                height: 500px;
+                order: -1;
+            }
+
+            .chef-image {
+                order: -1;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cursor {
+                display: none;
+            }
+
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--burgundy-dark);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                color: var(--cream) !important;
+                font-size: 1.3rem;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-card,
+            .category-card.large {
+                grid-column: span 1;
+                height: 350px;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: span 1;
+            }
+
+            .hours-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .map-overlay {
+                position: relative;
+                bottom: 0;
+                left: 0;
+                max-width: 100%;
+                border-radius: 0;
+            }
+
+            .about-images {
+                height: 400px;
+            }
+
+            .about-img-3 {
+                display: none;
+            }
+
+            .experience-badge {
+                right: 10px;
+                padding: 1.5rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .gallery-item:nth-child(1),
+            .gallery-item:nth-child(6) {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .whatsapp-btn {
+                bottom: 6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-logo">Romano</div>
+        <div class="preloader-spinner"></div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+
+    <!-- Floating Elements -->
+    <div class="floating-elements">
+        <span class="floating-leaf" style="top: 20%; left: 10%; animation-delay: 0s;">🌿</span>
+        <span class="floating-leaf" style="top: 60%; left: 85%; animation-delay: 2s;">🍃</span>
+        <span class="floating-leaf" style="top: 80%; left: 15%; animation-delay: 4s;">🌿</span>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="logo-container">
+            <div class="logo-icon">🍝</div>
+            <a href="#" class="logo">
+                Romano
+                <span>Ristorante</span>
+            </a>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#categories">Menu</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#takeaway">Take Away</a></li>
+            <li><a href="#hours">Hours</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#reservation" class="nav-cta">Reserve</a></li>
+        </ul>
+        <div class="mobile-toggle" id="mobileToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-video-container">
+            <img src="images/storefront.jpg" alt="Ristorante Romano" class="hero-bg-image">
+        </div>
+        <div class="hero-pattern"></div>
+        <div class="hero-content">
+            <p class="hero-decorative">Benvenuti</p>
+            <span class="hero-badge">◆ Authentic Italian Cuisine ◆</span>
+            <h1>
+                Ristorante Romano
+                <span class="highlight">Carrigaline</span>
+            </h1>
+            <p class="hero-subtitle">A Taste of Italy in the Heart of Cork</p>
+            <div class="hero-cta">
+                <a href="#reservation" class="btn btn-primary">Reserve Your Table</a>
+                <a href="#menu" class="btn btn-secondary">Explore Menu</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span class="scroll-text">Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        🍕 <span>Midweek Special:</span> 2 Pasta + Bottle of Wine for €45 | Tuesday - Thursday
+    </div>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-grid">
+            <div class="about-images">
+                <div class="about-img about-img-1">
+                    <img src="images/interior-bar.jpg" alt="Restaurant interior">
+                </div>
+                <div class="about-img about-img-2">
+                    <img src="images/chef.jpg" alt="Chef Toni cooking">
+                </div>
+                <div class="about-img about-img-3">
+                    <img src="images/dessert.jpg" alt="Homemade desserts">
+                </div>
+                <div class="experience-badge">
+                    <span class="number">100%</span>
+                    <span class="text">Freshly Made Daily</span>
+                </div>
+            </div>
+            <div class="about-content">
+                <span class="section-tag">Our Story</span>
+                <h2 class="section-title">Ciao, Hello!</h2>
+                <p class="about-text">
+                    At Ristorante Romano, we are dedicated to excellent food, friendly service, a warm atmosphere, and value for money. Our menu is designed to meet all tastes and includes meats, seafood, pasta, pizza, vegetarian, gluten-free, and vegan dishes.
+                </p>
+                <p class="about-text">
+                    We are very proud to source the freshest local produce here in Cork and Carrigaline to bring you the best quality food available. All our food is freshly prepared every day in our kitchen, including all our sauces, pastas, breads, and ice creams.
+                </p>
+                <p class="about-signature">Grazie mille!</p>
+                <div class="about-features">
+                    <div class="about-feature">
+                        <div class="about-feature-icon">🌿</div>
+                        <span>Fresh Local Produce</span>
+                    </div>
+                    <div class="about-feature">
+                        <div class="about-feature-icon">👨‍🍳</div>
+                        <span>Homemade Daily</span>
+                    </div>
+                    <div class="about-feature">
+                        <div class="about-feature-icon">👨‍👩‍👧‍👦</div>
+                        <span>Family Friendly</span>
+                    </div>
+                    <div class="about-feature">
+                        <div class="about-feature-icon">🇮🇹</div>
+                        <span>Authentic Italian</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specialties Strip -->
+    <div class="specialties-strip">
+        <div class="specialties-marquee">
+            <div class="specialty-strip-item">
+                <span>Wood-Fired Pizza</span>
+                <div class="dot"></div>
+                <span>Fresh Pasta</span>
+                <div class="dot"></div>
+                <span>Local Seafood</span>
+                <div class="dot"></div>
+                <span>Premium Meats</span>
+                <div class="dot"></div>
+                <span>Homemade Gelato</span>
+                <div class="dot"></div>
+                <span>Fine Wines</span>
+                <div class="dot"></div>
+            </div>
+            <div class="specialty-strip-item">
+                <span>Wood-Fired Pizza</span>
+                <div class="dot"></div>
+                <span>Fresh Pasta</span>
+                <div class="dot"></div>
+                <span>Local Seafood</span>
+                <div class="dot"></div>
+                <span>Premium Meats</span>
+                <div class="dot"></div>
+                <span>Homemade Gelato</span>
+                <div class="dot"></div>
+                <span>Fine Wines</span>
+                <div class="dot"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category Section -->
+    <section class="categories" id="categories">
+        <div class="section-header">
+            <div class="section-icon">🍽️</div>
+            <span class="section-tag">Explore Our Menu</span>
+            <h2 class="section-title">Our Categories</h2>
+            <p class="section-desc">From wood-fired pizzas to fresh seafood, discover the diverse flavors of authentic Italian cuisine</p>
+        </div>
+        <div class="category-grid">
+            <div class="category-card large">
+                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800" alt="Artisan Pizza">
+                <div class="category-card-overlay">
+                    <div class="category-card-icon">🍕</div>
+                    <h3>Artisan Pizza</h3>
+                    <p>Hand-stretched dough, San Marzano tomatoes, and premium mozzarella. Our pizzas are a true Italian masterpiece.</p>
+                    <a href="#menu" class="category-card-btn">
+                        View Menu
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=600" alt="Fresh Pasta">
+                <div class="category-card-overlay">
+                    <div class="category-card-icon">🍝</div>
+                    <h3>Fresh Pasta</h3>
+                    <p>Made daily using traditional techniques</p>
+                    <a href="#menu" class="category-card-btn">
+                        View Menu
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600" alt="Fresh Seafood">
+                <div class="category-card-overlay">
+                    <div class="category-card-icon">🦐</div>
+                    <h3>Fresh Seafood</h3>
+                    <p>Daily catch from local Cork waters</p>
+                    <a href="#menu" class="category-card-btn">
+                        View Menu
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600" alt="Prime Meats">
+                <div class="category-card-overlay">
+                    <div class="category-card-icon">🥩</div>
+                    <h3>Prime Meats</h3>
+                    <p>Succulent cuts with Mediterranean herbs</p>
+                    <a href="#menu" class="category-card-btn">
+                        View Menu
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="category-card large">
+                <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800" alt="Vegetarian & Vegan">
+                <div class="category-card-overlay">
+                    <div class="category-card-icon">🥗</div>
+                    <h3>Vegetarian & Vegan</h3>
+                    <p>Delicious plant-based options crafted with the same care and passion as our classic dishes. Gluten-free options also available.</p>
+                    <a href="#menu" class="category-card-btn">
+                        View Menu
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chef Section -->
+    <section class="chef-section">
+        <div class="chef-grid">
+            <div class="chef-content">
+                <span class="section-tag">Meet The Chef</span>
+                <h2 class="section-title">Toni Romano</h2>
+                <p>With true passion and culinary expertise, Chef Toni brings the authentic flavors of Italy to every dish. Using time-honored family recipes passed down through generations, he transforms the freshest local Cork and Carrigaline ingredients into unforgettable Italian meals.</p>
+                <blockquote class="chef-quote">
+                    "Cooking is about passion, so it may look slightly different every time, but it always comes from the heart."
+                </blockquote>
+                <p class="chef-signature">Toni Romano</p>
+            </div>
+            <div class="chef-image">
+                <img src="images/chef.jpg" alt="Chef Toni Romano">
+                <div class="chef-badge">
+                    <div class="chef-badge-icon">⭐</div>
+                    <div class="chef-badge-text">Master Chef</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu" id="menu">
+        <div class="section-header">
+            <div class="section-icon">📜</div>
+            <span class="section-tag">Culinary Excellence</span>
+            <h2 class="section-title">Our Menu</h2>
+            <p class="section-desc">A carefully curated selection of authentic Italian dishes</p>
+        </div>
+
+        <div class="menu-tabs-container">
+            <div class="menu-tabs">
+                <button class="menu-tab active" data-tab="antipasti">🥗 Antipasti</button>
+                <button class="menu-tab" data-tab="pasta">🍝 Pasta</button>
+                <button class="menu-tab" data-tab="pizza">🍕 Pizza</button>
+                <button class="menu-tab" data-tab="specialities">🥩 Specialities</button>
+                <button class="menu-tab" data-tab="kids">👶 Kids</button>
+                <button class="menu-tab" data-tab="desserts">🍰 Desserts</button>
+                <button class="menu-tab" data-tab="wines">🍷 Wines</button>
+            </div>
+
+            <div class="dietary-filters">
+                <button class="dietary-filter active" data-filter="all">🍽️ All</button>
+                <button class="dietary-filter" data-filter="vegetarian">🥬 Vegetarian</button>
+                <button class="dietary-filter" data-filter="vegan">🌱 Vegan</button>
+                <button class="dietary-filter" data-filter="gluten-free">🌾 Gluten-Free</button>
+            </div>
+        </div>
+
+        <div class="menu-content">
+            <!-- ============ ANTIPASTI ============ -->
+            <div class="menu-category active" id="antipasti">
+                <div class="menu-grid">
+                    <div class="menu-item" data-dietary="vegetarian">
+                        <div class="menu-item-info">
+                            <h4>Zuppa Del Giorno <span class="menu-dietary-tag tag-vegetarian">V</span></h4>
+                            <p>Home made soup of the day served with bread & butter</p>
+                        </div>
+                        <span class="price">€6.50</span>
+                    </div>
+                    <div class="menu-item" data-dietary="vegetarian">
+                        <div class="menu-item-info">
+                            <h4>Bruschetta <span class="menu-dietary-tag tag-vegetarian">V</span></h4>
+                            <p>Toasted ciabatta bread with tomato, garlic and basil</p>
+                        </div>
+                        <span class="price">€7.95</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Bruschetta con Salmone</h4>
+                            <p>Toasted bread topped with smoked salmon, cream cheese and capers</p>
+                        </div>
+                        <span class="price">€9.95</span>
+                    </div>
+                    <div class="menu-item" data-dietary="vegetarian gluten-free">
+                        <div class="menu-item-info">
+                            <h4>Caprese <span class="menu-dietary-tag tag-vegetarian">V</span> <span class="menu-dietary-tag tag-gluten-free">GF</span></h4>
+                            <p>Fresh tomatoes, basil, buffalo mozzarella, olives and olive oil</p>
+                        </div>
+                        <span class="price">€9.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Antipasto Romano</h4>
+                            <p>Selection of cured Italian meats, cheeses, olives, sun-dried tomatoes</p>
+                        </div>
+                        <span class="price">€14.95</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Calamari Fritti</h4>
+                            <p>Deep-fried squid rings served with garlic aioli</p>
+                        </div>
+                        <span class="price">€11.95</span>
+                    </div>
+                    <div class="menu-item" data-dietary="vegetarian">
+                        <div class="menu-item-info">
+                            <h4>Garlic Bread <span class="menu-dietary-tag tag-vegetarian">V</span></h4>
+                            <p>Traditional garlic bread with herbs</p>
+                        </div>
+                        <span class="price">€5.95</span>
+                    </div>
+                    <div class="menu-item" data-dietary="vegetarian">
+                        <div class="menu-item-info">
+                            <h4>Garlic Bread with Cheese <span class="menu-dietary-tag tag-vegetarian">V</span></h4>
+                            <p>Garlic bread topped with melted mozzarella</p>
+                        </div>
+                        <span class="price">€6.95</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Polpette</h4>
+                            <p>Homemade meatballs in tomato sauce with parmesan</p>
+                        </div>
+                        <span class="price">€9.95</span>
+                    </div>
+                    <div class="menu-item" data-dietary="vegetarian gluten-free">
+                        <div class="menu-item-info">
+                            <h4>Insalata Di Romano <span class="menu-dietary-tag tag-vegetarian">V</span> <span class="menu-dietary-tag tag-gluten-free">GF</span></h4>
+                            <p>Oak leaf lettuce, cherry tomatoes, buffalo mozzarella, olives, red onions</p>
+                        </div>
+                        <span class="price">€8.95</span>
+                    </div>
+                    <div class="menu-item" data-dietary="vegetarian vegan gluten-free">
+                        <div class="menu-item-info">
+                            <h4>Portion Of Mixed Olives <span class="menu-dietary-tag tag-vegetarian">V</span> <span class="menu-dietary-tag tag-vegan">VG</span> <span class="menu-dietary-tag tag-gluten-free">GF</span></h4>
+                            <p>Selection of marinated Italian olives</p>
+                        </div>
+                        <span class="price">€4.95</span>
+                    </div>
+                    <div class="menu-item" data-dietary="vegetarian">
+                        <div class="menu-item-info">
+                            <h4>Funghi All'Aglio <span class="menu-dietary-tag tag-vegetarian">V</span></h4>
+                            <p>Sautéed mushrooms with garlic, white wine and cream</p>
+                        </div>
+                        <span class="price">€8.50</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============ PASTA ============ -->
+            <div class="menu-category" id="pasta">
+                <p class="menu-note-inline">🍝 All pasta is freshly made and served with garlic bread</p>
+                
+                <h4 class="menu-subcategory">MEAT PASTA</h4>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Spaghetti Bolognese</h4>
+                            <p>Classic meat ragù with slow-cooked beef</p>
+                        </div>
+                        <span class="price">€15.95</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Lasagne al Forno</h4>
+                            <p>Traditional layered pasta with beef ragù and béchamel</p>
+                        </div>
+                        <span class="price">€16.95</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Spaghetti Carbonara</h4>
+                            <p>Pancetta, egg, parmesan, black pepper</p>
+                        </div>
+                        <span class="price">€15.95</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Cannelloni Alla Bolognaise</h4>
+                            <p>Pasta rolls filled with meat sauce and béchamel</p>
+                        </div>
+                        <span class="price">€16.25</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Spaghetti Meatballs</h4>
+                            <p>Fresh Irish minced beef in rich pomodoro sauce</p>
+                        </div>
+                        <span class="price">€16.25</span>
+                    </div>
+                </div>
+
+                <h4 class="menu-subcategory">🐔 CHICKEN PASTA</h4>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Tagliatelle con Pollo</h4>
+                            <p>Chicken, mushrooms, cream sauce</p>
+                        </div>
+                        <span class="price">€16.95</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Pollo al Farcito</h4>
+                            <p>Penne with saffron chicken, sweetcorn, peppers and chilli</p>
+                        </div>
+                        <span class="price">€16.95</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Pasta Pollo Spagnolo</h4>
+                            <p>Chorizo, chicken, onions, mushrooms in pomodoro sauce</p>
+                        </div>
+                        <span class="price">€17.95</span>
+                    </div>
+                </div>
+
+                <h4 class="menu-subcategory">🦐 SEAFOOD PASTA</h4>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Penne al Salmone</h4>
+                            <p>Smoked salmon, cream, dill</p>
+                        </div>
+                        <span class="price">€17.95</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Spaghetti alle Vongole</h4>
+                            <p>Fresh clams, white wine, garlic, parsley</p>
+                        </div>
+                        <span class="price">€18.95</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Linguine ai Frutti di Mare</h4>
+                            <p>Mixed seafood in tomato sauce</p>
+                        </div>
+                        <span class="price">€19.95</span>
+                    </div>
+                </div>
+
+                <h4 class="menu-subcategory">🥬 VEGETARIAN PASTA</h4>
+                <div class="menu-grid">
+                    <div class="menu-item" data-dietary="vegetarian vegan">
+                        <div class="menu-item-info">
+                            <h4>Penne Arrabiata <span class="menu-dietary-tag tag-vegetarian">V</span> <span class="menu-dietary-tag tag-vegan">VG</span></h4>
+                            <p>Spicy tomato sauce with garlic and chilli</p>
+                        </div>
+                        <span class="price">€13.95</span>
+                    </div>
+                    <div class="menu-item" data-dietary="vegetarian">
+                        <div class="menu-item-info">
+                            <h4>Fettuccine Alfredo <span class="menu-dietary-tag tag-vegetarian">V</span></h4>
+                            <p>Creamy parmesan sauce with butter</p>
+                        </div>
+                        <span class="price">€14.95</span>
+                    </div>
+                    <div class="menu-item" data-dietary="vegetarian">
+                        <div class="menu-item-info">
+                            <h4>Ravioli Ricotta e Spinaci <span class="menu-dietary-tag tag-vegetarian">V</span></h4>
+                            <p>Homemade ravioli with ricotta and spinach</p>
+                        </div>
+                        <span class="price">€15.95</span>
+                    </div>
+                    <div class="menu-item" data-dietary="vegetarian">
+                        <div class="menu-item-info">
+                            <h4>Gnocchi Sorrentina <span class="menu-dietary-tag tag-vegetarian">V</span></h4>
+                            <p>Potato gnocchi with tomato, mozzarella, basil</p>
+                        </div>
+                        <span class="price">€14.95</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============ PIZZA ============ -->
+            <div class="menu-category" id="pizza">
+                <p class="menu-note-inline">🍕 All our pizzas are 12 inch & baked in our stone pizza oven to perfection</p>
+                
+                <h4 class="menu-subcategory">MEAT PIZZAS</h4>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Pizza di Romano</h4>
+                            <p>Tomato, cheese, Italian sausage, Parma Ham</p>
+                        </div>
+                        <span class="price">€15.95</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Pizza Pugliese</h4>
+                            <p>Tomato, cheese, mushrooms, ham</p>
+                        </div>
+                        <span class="price">€15.95</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Pizza Siciliana</h4>
+                            <p>Tomato, cheese, ham, mushrooms and egg</p>
+                        </div>
+                        <span class="price">€15.95</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Pizza Calabrese</h4>
+                            <p>Tomato, cheese, onion, roast pepper, chorizo</p>
+                        </div>
+                        <span class="price">€15.95</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Pizza Capricciosa</h4>
+                            <p>Cheese, ham, pepper, onion, mushroom, pepperoni</p>
+                        </div>
+                        <span class="price">€16.95</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Calzone</h4>
+                            <p>Folded pizza with pepperoni, ham, cheese, bolognaise</p>
+                        </div>
+                        <span class="price">€15.95</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Pizza Tropicale</h4>
+                            <p>Ham, pineapple, mozzarella</p>
+                        </div>
+                        <span class="price">€15.95</span>
+                    </div>
+                </div>
+
+                <h4 class="menu-subcategory">🦐 SEAFOOD PIZZAS</h4>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Pizza Marinara</h4>
+                            <p>Mussels, prawns, salmon and calamari</p>
+                        </div>
+                        <span class="price">€17.95</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Pizza della Mare</h4>
+                            <p>Anchovies, olives, capers, red onions, chilli</p>
+                        </div>
+                        <span class="price">€16.95</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Pizza con Gamberetti</h4>
+                            <p>King prawns, capers, olives and cream</p>
+                        </div>
+                        <span class="price">€16.95</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Pizza al Salmone</h4>
+                            <p>Tomato, cheese, salmon, onions, olives</p>
+                        </div>
+                        <span class="price">€16.95</span>
+                    </div>
+                </div>
+
+                <h4 class="menu-subcategory">🐔 CHICKEN PIZZAS</h4>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Pizza Masala</h4>
+                            <p>Chicken tikka, roasted peppers, onions, sweetcorn</p>
+                        </div>
+                        <span class="price">€16.95</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Pollo Funghi</h4>
+                            <p>Pieces of chicken, ham, mushrooms</p>
+                        </div>
+                        <span class="price">€15.95</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Polo Piccante</h4>
+                            <p>Chicken, onions, mushrooms, chilli flakes, sweetcorn</p>
+                        </div>
+                        <span class="price">€15.95</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Toscanella</h4>
+                            <p>Chicken, pepperoni, ham, cheese</p>
+                        </div>
+                        <span class="price">€15.95</span>
+                    </div>
+                </div>
+
+                <h4 class="menu-subcategory">🥬 VEGETARIAN PIZZAS</h4>
+                <div class="menu-grid">
+                    <div class="menu-item" data-dietary="vegetarian">
+                        <div class="menu-item-info">
+                            <h4>Pizza Margherita <span class="menu-dietary-tag tag-vegetarian">V</span></h4>
+                            <p>Tomato and mozzarella</p>
+                        </div>
+                        <span class="price">€13.95</span>
+                    </div>
+                    <div class="menu-item" data-dietary="vegetarian">
+                        <div class="menu-item-info">
+                            <h4>Pizza Napoletana <span class="menu-dietary-tag tag-vegetarian">V</span></h4>
+                            <p>Tomato, cheese, onions, sweetcorn, peppers</p>
+                        </div>
+                        <span class="price">€14.95</span>
+                    </div>
+                    <div class="menu-item" data-dietary="vegetarian">
+                        <div class="menu-item-info">
+                            <h4>Pizza Quattro Formaggi <span class="menu-dietary-tag tag-vegetarian">V</span></h4>
+                            <p>Gorgonzola, fontina, mozzarella, parmesan</p>
+                        </div>
+                        <span class="price">€14.95</span>
+                    </div>
+                    <div class="menu-item" data-dietary="vegetarian">
+                        <div class="menu-item-info">
+                            <h4>Pizza Cacciatora <span class="menu-dietary-tag tag-vegetarian">V</span></h4>
+                            <p>Tomato, cheese, onion, mushroom, roast pepper</p>
+                        </div>
+                        <span class="price">€14.95</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============ HOUSE SPECIALITIES ============ -->
+            <div class="menu-category" id="specialities">
+                <p class="menu-note-inline">🥩 All our beef and chicken are 100% Irish and from fully traceable farms. Served with salad & homemade fries.</p>
+                
+                <h4 class="menu-subcategory">STEAKS</h4>
+                <div class="menu-grid">
+                    <div class="menu-item" data-dietary="gluten-free">
+                        <div class="menu-item-info">
+                            <h4>14 Oz Sirloin Mushroom Sauce <span class="menu-dietary-tag tag-gluten-free">GF</span></h4>
+                            <p>14oz Sirloin Irish beef served with mushrooms and white wine sauce</p>
+                        </div>
+                        <span class="price">€27.90</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>14 Oz Sirloin Stroganoff</h4>
+                            <p>14 oz finest Irish sirloin steak served with Romano's stroganoff sauce</p>
+                        </div>
+                        <span class="price">€28.90</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>14 Oz Sirloin Steak Romano</h4>
+                            <p>Finest Irish beef Sirloin served with prawns, creamy & tomato white wine sauce</p>
+                        </div>
+                        <span class="price">€29.90</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Fillet Steak Mozzarella</h4>
+                            <p>12oz finest Irish beef fillet grilled on charcoal with fresh mozzarella and pomodoro sauce</p>
+                        </div>
+                        <span class="price">€31.90</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>12 Oz Fillet Steak Romano</h4>
+                            <p>12oz finest Irish beef cooked on charcoal with Romano's secret recipe sauce with prawns</p>
+                        </div>
+                        <span class="price">€30.90</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>12 Oz Ribeye Steak Griglia</h4>
+                            <p>12oz finest Irish beef Ribeye cooked on charcoal with Romano's secret French mustard sauce</p>
+                        </div>
+                        <span class="price">€32.90</span>
+                    </div>
+                </div>
+
+                <h4 class="menu-subcategory">VEAL</h4>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Saltimboca alla Romana</h4>
+                            <p>Veal rolled in parma ham slivers, cooked in flour, sage, white wine sauce with pasta and salad</p>
+                        </div>
+                        <span class="price">€32.90</span>
+                    </div>
+                </div>
+
+                <h4 class="menu-subcategory">🐔 CHICKEN MAINS</h4>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Charcoal Pollo alla Millanese</h4>
+                            <p>Breast of chicken seasoned with herbs, cooked with onion, mushroom, peppers and tomato sauce</p>
+                        </div>
+                        <span class="price">€18.95</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Pollo alla Casanova</h4>
+                            <p>Breast of chicken cooked in spicy sauce served with roasted peppers</p>
+                        </div>
+                        <span class="price">€18.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Pollo Stroganoff</h4>
+                            <p>Chicken breast cooked in French mustard, olives, green peppercorns and cream sauce</p>
+                        </div>
+                        <span class="price">€18.95</span>
+                    </div>
+                </div>
+
+                <h4 class="menu-subcategory">🦐 SEAFOOD MAINS</h4>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Fritto Misto alla Romana</h4>
+                            <p>Selection of fresh Irish seafood: salmon, calamari, and prawns deep fried with spicy tomato sauce</p>
+                        </div>
+                        <span class="price">€19.95</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Calamari Fritti Main</h4>
+                            <p>Fresh calamari deep-fried in finest Italian herbs with delicious spicy sauce</p>
+                        </div>
+                        <span class="price">€18.25</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============ KIDS MENU ============ -->
+            <div class="menu-category" id="kids">
+                <p class="menu-note-inline">👶 ROMANO KIDS MENU - *Ordering from the kids menu is not permitted for ages over 12*</p>
+                
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Build Your Own Pasta</h4>
+                            <p>Pick pasta (Penne/Fusilli/Spaghetti/Fettuccine) + sauce (Pomodoro/Meatballs/Bolognese)</p>
+                        </div>
+                        <span class="price">€10.00</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Pasta Pollo</h4>
+                            <p>Pasta with chicken</p>
+                        </div>
+                        <span class="price">€10.00</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Pasta Carbonara</h4>
+                            <p>Pasta with carbonara sauce</p>
+                        </div>
+                        <span class="price">€10.00</span>
+                    </div>
+                    <div class="menu-item" data-dietary="vegetarian">
+                        <div class="menu-item-info">
+                            <h4>Margarita Pizza <span class="menu-dietary-tag tag-vegetarian">V</span></h4>
+                            <p>Classic cheese pizza</p>
+                        </div>
+                        <span class="price">€10.00</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Pepperoni Pizza</h4>
+                            <p>Pizza with pepperoni</p>
+                        </div>
+                        <span class="price">€12.00</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Irish Sausages & Chips</h4>
+                            <p>Traditional sausages with chips</p>
+                        </div>
+                        <span class="price">€10.00</span>
+                    </div>
+                    <div class="menu-item" data-dietary="vegetarian">
+                        <div class="menu-item-info">
+                            <h4>Garlic Bread with Cheese <span class="menu-dietary-tag tag-vegetarian">V</span></h4>
+                            <p>Cheesy garlic bread</p>
+                        </div>
+                        <span class="price">€5.95</span>
+                    </div>
+                    <div class="menu-item" data-dietary="vegetarian">
+                        <div class="menu-item-info">
+                            <h4>3 Scoops Homemade Ice Cream <span class="menu-dietary-tag tag-vegetarian">V</span></h4>
+                            <p>Selection of homemade ice cream</p>
+                        </div>
+                        <span class="price">€10.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============ DESSERTS ============ -->
+            <div class="menu-category" id="desserts">
+                <p class="menu-note-inline">🍰 All our desserts are home made here in Ristorante Romano</p>
+                
+                <h4 class="menu-subcategory">DESSERTS</h4>
+                <div class="menu-grid">
+                    <div class="menu-item" data-dietary="vegetarian">
+                        <div class="menu-item-info">
+                            <h4>Tiramisu <span class="menu-dietary-tag tag-vegetarian">V</span></h4>
+                            <p>Layers of Italian biscuits deep in Coffee and Amaretto liqueur with fresh Irish cream and mascarpone cheese</p>
+                        </div>
+                        <span class="price">€7.50</span>
+                    </div>
+                    <div class="menu-item" data-dietary="vegetarian">
+                        <div class="menu-item-info">
+                            <h4>Banofi <span class="menu-dietary-tag tag-vegetarian">V</span></h4>
+                            <p>Freshly chopped bananas on digestive biscuits with caramel & topped with fresh cream</p>
+                        </div>
+                        <span class="price">€7.50</span>
+                    </div>
+                    <div class="menu-item" data-dietary="vegetarian gluten-free">
+                        <div class="menu-item-info">
+                            <h4>Gelato Ice Cream <span class="menu-dietary-tag tag-vegetarian">V</span> <span class="menu-dietary-tag tag-gluten-free">GF</span></h4>
+                            <p>Three selections of our home-made ice-cream (scoop €2.50)</p>
+                        </div>
+                        <span class="price">€7.50</span>
+                    </div>
+                    <div class="menu-item" data-dietary="vegetarian gluten-free">
+                        <div class="menu-item-info">
+                            <h4>Affogato <span class="menu-dietary-tag tag-vegetarian">V</span> <span class="menu-dietary-tag tag-gluten-free">GF</span></h4>
+                            <p>Vanilla Ice Cream, Espresso</p>
+                        </div>
+                        <span class="price">€7.50</span>
+                    </div>
+                    <div class="menu-item" data-dietary="vegetarian gluten-free">
+                        <div class="menu-item-info">
+                            <h4>Vanilla Panna Cotta <span class="menu-dietary-tag tag-vegetarian">V</span> <span class="menu-dietary-tag tag-gluten-free">GF</span></h4>
+                            <p>Served with fresh fruits & cream vanilla</p>
+                        </div>
+                        <span class="price">€7.50</span>
+                    </div>
+                    <div class="menu-item" data-dietary="vegetarian">
+                        <div class="menu-item-info">
+                            <h4>Cheese Board for 2 <span class="menu-dietary-tag tag-vegetarian">V</span></h4>
+                            <p>Selections of cheese with bread & dips</p>
+                        </div>
+                        <span class="price">€23.50</span>
+                    </div>
+                    <div class="menu-item" data-dietary="vegetarian">
+                        <div class="menu-item-info">
+                            <h4>Sicilian Cannoli <span class="menu-dietary-tag tag-vegetarian">V</span></h4>
+                            <p>Cannolo filled with a sweet creamy ricotta cheese & chocolate</p>
+                        </div>
+                        <span class="price">€7.50</span>
+                    </div>
+                </div>
+
+                <h4 class="menu-subcategory">🍸 AFTER DINNER DRINKS</h4>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Espresso Martini</h4>
+                            <p>Vodka, Frangelico Coffee Liqueur & Fresh Coffee, Ice</p>
+                        </div>
+                        <span class="price">€14.00</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Amaretto Sour</h4>
+                            <p>Amaretto Disaronno, passion fruit Juice & Sugar Syrup</p>
+                        </div>
+                        <span class="price">€14.00</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Old Fashioned</h4>
+                            <p>Irish Whiskey, Sugar Syrup & Bitters</p>
+                        </div>
+                        <span class="price">€14.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============ WINES ============ -->
+            <div class="menu-category" id="wines">
+                <h4 class="menu-subcategory">🍷 RED WINES</h4>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Nero D'Avola</h4>
+                            <p>Bottle / Carafe / Glass</p>
+                        </div>
+                        <span class="price">€26.50 / €15 / €7</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Naja Sicilian Shiraz ⭐</h4>
+                            <p>4x Gold Medal Winner - Bottle / Carafe / Glass</p>
+                        </div>
+                        <span class="price">€27.50 / €15 / €7</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Montepulciano D'Abruzzo</h4>
+                            <p>Bottle / Carafe / Glass</p>
+                        </div>
+                        <span class="price">€27.50 / €15 / €7</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Primitivo</h4>
+                            <p>Bottle only</p>
+                        </div>
+                        <span class="price">€27.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Chianti</h4>
+                            <p>Bottle only</p>
+                        </div>
+                        <span class="price">€30.00</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Barbera Dasti</h4>
+                            <p>Bottle only</p>
+                        </div>
+                        <span class="price">€27.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Bardolino</h4>
+                            <p>Bottle only</p>
+                        </div>
+                        <span class="price">€35.00</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Valpolicella Superiore</h4>
+                            <p>Bottle only</p>
+                        </div>
+                        <span class="price">€40.00</span>
+                    </div>
+                </div>
+
+                <h4 class="menu-subcategory">🥂 WHITE WINES</h4>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Stupor Mundi DOC</h4>
+                            <p>Bottle / Carafe / Glass</p>
+                        </div>
+                        <span class="price">€27.50 / €15 / €7</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Alcamo DOC</h4>
+                            <p>Bottle / Carafe / Glass</p>
+                        </div>
+                        <span class="price">€26.50 / €15 / €7</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Trebbiano D'Abruzzo</h4>
+                            <p>Bottle / Carafe / Glass</p>
+                        </div>
+                        <span class="price">€27.50 / €15 / €7</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Sicilian Pinot Grigio</h4>
+                            <p>Bottle / Carafe / Glass</p>
+                        </div>
+                        <span class="price">€27.50 / €15 / €7</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Insolia Sicily</h4>
+                            <p>Bottle / Carafe / Glass</p>
+                        </div>
+                        <span class="price">€27.50 / €15 / €7</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Prosecco Vino Spumante 🥂</h4>
+                            <p>Bottle only</p>
+                        </div>
+                        <span class="price">€35.00</span>
+                    </div>
+                </div>
+
+                <h4 class="menu-subcategory">🍺 BEERS & SPIRITS</h4>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Peroni (Draft)</h4>
+                            <p>Italian lager on tap</p>
+                        </div>
+                        <span class="price">€7.00</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Moretti (Draft)</h4>
+                            <p>Italian lager on tap</p>
+                        </div>
+                        <span class="price">€7.00</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Nastro Azzurro (Bottle)</h4>
+                            <p>Premium Italian lager</p>
+                        </div>
+                        <span class="price">€6.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Moretti (Bottle)</h4>
+                            <p>Italian lager bottle</p>
+                        </div>
+                        <span class="price">€6.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Limoncello</h4>
+                            <p>Italian lemon liqueur</p>
+                        </div>
+                        <span class="price">€4.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Sambuca</h4>
+                            <p>Italian anise liqueur</p>
+                        </div>
+                        <span class="price">€4.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Amaretto</h4>
+                            <p>Italian bitter liqueur</p>
+                        </div>
+                        <span class="price">€4.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h4>Whiskey & Mineral</h4>
+                            <p>Whiskey with mineral water</p>
+                        </div>
+                        <span class="price">€7.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-note">
+            <p><strong>V</strong> = Vegetarian | <strong>VG</strong> = Vegan | <strong>GF</strong> = Gluten-Free<br><br>
+            Please inform your server of any allergies. Many dishes can be adapted to your dietary needs.</p>
+        </div>
+    </section>
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="section-header" style="padding: 0 5%;">
+            <div class="section-icon">📸</div>
+            <span class="section-tag">Visual Journey</span>
+            <h2 class="section-title">Our Gallery</h2>
+            <p class="section-desc">A glimpse into the Ristorante Romano experience</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openLightbox(this)">
+                <img src="images/storefront.jpg" alt="Ristorante Romano Entrance">
+                <div class="gallery-item-overlay"><span>🔍</span></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+                <img src="images/chef.jpg" alt="Chef Toni preparing fresh pizza">
+                <div class="gallery-item-overlay"><span>🔍</span></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+                <img src="images/interior-bar.jpg" alt="Our beautiful bar area">
+                <div class="gallery-item-overlay"><span>🔍</span></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+                <img src="images/interior-kitchen.jpg" alt="Open kitchen view">
+                <div class="gallery-item-overlay"><span>🔍</span></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+                <img src="images/dessert.jpg" alt="Homemade Panna Cotta with berries">
+                <div class="gallery-item-overlay"><span>🔍</span></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+                <img src="images/interior-bar2.jpg" alt="Cozy restaurant ambiance">
+                <div class="gallery-item-overlay"><span>🔍</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Take Away Section -->
+    <section class="takeaway" id="takeaway">
+        <div class="takeaway-container">
+            <div class="section-header">
+                <div class="section-icon">🥡</div>
+                <span class="section-tag">Enjoy at Home</span>
+                <h2 class="section-title">Take Away</h2>
+                <p class="section-desc">All our delicious dishes available for collection</p>
+            </div>
+            <div class="takeaway-content">
+                <div class="takeaway-info">
+                    <h3>CIAO. HELLO.</h3>
+                    <p>At Ristorante Romano we are dedicated to excellent food, friendly service, a warm atmosphere and value for money. Our menu is designed to meet all tastes and includes meats, seafood, pasta, pizza, vegetarian, gluten free and vegan dishes.</p>
+                    <p>We are very proud to source the freshest local produce here in Cork and Carrigaline to bring you the best quality food available. All our food is freshly prepared every day in our kitchen including all our sauces, pastas, breads and ice creams.</p>
+                    
+                    <div class="takeaway-features">
+                        <div class="takeaway-feature">
+                            <div class="takeaway-feature-icon">🍕</div>
+                            <div class="takeaway-feature-text">
+                                <h4>Full Menu Available</h4>
+                                <p>All pizzas, pasta, specialities & more</p>
+                            </div>
+                        </div>
+                        <div class="takeaway-feature">
+                            <div class="takeaway-feature-icon">⏰</div>
+                            <div class="takeaway-feature-text">
+                                <h4>Opening Hours</h4>
+                                <p>Lunch: 12pm - 4pm | Dinner: 4pm - Late</p>
+                            </div>
+                        </div>
+                        <div class="takeaway-feature">
+                            <div class="takeaway-feature-icon">🚗</div>
+                            <div class="takeaway-feature-text">
+                                <h4>Easy Collection</h4>
+                                <p>Free parking at Owenabue Mall</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="takeaway-cta">
+                        <a href="https://wa.me/353874430140?text=Hi!%20I'd%20like%20to%20place%20a%20takeaway%20order" class="btn-whatsapp" target="_blank">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                            WhatsApp Order
+                        </a>
+                        <a href="tel:0214919019" class="btn-call">
+                            📞 Call: 021 491 9019
+                        </a>
+                    </div>
+                </div>
+                <div class="takeaway-image">
+                    <img src="images/chef.jpg" alt="Chef Toni preparing your takeaway order">
+                    <div class="takeaway-badge">
+                        <span>Ready in</span>
+                        <span>20 mins</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="section-header">
+            <div class="section-icon">💬</div>
+            <span class="section-tag">What Our Guests Say</span>
+            <h2 class="section-title">Reviews</h2>
+        </div>
+        <div class="testimonial-slider">
+            <div class="testimonial">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-quote">
+                    "Absolutely fantastic experience! The pasta was the best I've ever had outside of Italy. The staff made us feel like family."
+                </p>
+                <div class="testimonial-author">
+                    <span class="testimonial-author-name">Sarah & Michael</span>
+                    <span class="testimonial-author-location">Cork, Ireland</span>
+                </div>
+            </div>
+            <div class="testimonial-nav">
+                <span class="testimonial-dot active"></span>
+                <span class="testimonial-dot"></span>
+                <span class="testimonial-dot"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+    <section class="reservation" id="reservation">
+        <div class="reservation-container">
+            <div class="reservation-info" id="contact">
+                <span class="section-tag">Get in Touch</span>
+                <h2 class="section-title">Book Your Table</h2>
+                <p>We would love to welcome you to Ristorante Romano for an unforgettable Italian dining experience. A €10 deposit per person is required for reservations.</p>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-item-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                        </div>
+                        <div class="contact-item-content">
+                            <h4>Location</h4>
+                            <p>1A Owenabue Mall<br>Main Street, Carrigaline<br>County Cork, Ireland</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                        </div>
+                        <div class="contact-item-content">
+                            <h4>Phone</h4>
+                            <p><a href="tel:0214919019">021 491 9019</a><br><a href="tel:0874430140">087 443 0140</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                        </div>
+                        <div class="contact-item-content">
+                            <h4>Email</h4>
+                            <p><a href="mailto:romanotoni8@gmail.com">romanotoni8@gmail.com</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://www.facebook.com/share/1DKAAe3gPe/" class="social-link" target="_blank" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href="https://instagram.com/ristoranteromanocarrigaline" class="social-link" target="_blank" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="https://tripadvisor.com" class="social-link" target="_blank" aria-label="TripAdvisor">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="6.5" cy="13.5" r="2.5"/><circle cx="17.5" cy="13.5" r="2.5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8z"/></svg>
+                    </a>
+                    <a href="https://google.com/maps" class="social-link" target="_blank" aria-label="Google">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="reservation-form">
+                <h3 class="form-title">Reserve Your Table</h3>
+                <p class="form-subtitle">Fill in the form and we'll confirm your booking</p>
+                
+                <!-- Deposit Notice -->
+                <div class="deposit-notice">
+                    <h4>💳 Reservation Deposit</h4>
+                    <p>A deposit of <span class="highlight">€10 per person</span> is required to secure your reservation.</p>
+                    <div class="refund-policy">
+                        <strong>✅ Refund Policy:</strong> Full refund if cancelled <strong>at least 1 hour before</strong> your reservation time.
+                    </div>
+                </div>
+                
+                <form id="reservationForm" action="https://formspree.io/f/your-form-id" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required placeholder="John Smith">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required placeholder="john@email.com">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="+353 87 123 4567">
+                        </div>
+                        <div class="form-group">
+                            <label for="guests">Guests</label>
+                            <select id="guests" name="guests" required>
+                                <option value="">Select</option>
+                                <option value="1">1 Person</option>
+                                <option value="2">2 People</option>
+                                <option value="3">3 People</option>
+                                <option value="4">4 People</option>
+                                <option value="5">5 People</option>
+                                <option value="6">6 People</option>
+                                <option value="7+">7+ People</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date">Date</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Time</label>
+                            <select id="time" name="time" required>
+                                <option value="">Select</option>
+                                <option value="12:00">12:00 PM</option>
+                                <option value="13:00">1:00 PM</option>
+                                <option value="14:00">2:00 PM</option>
+                                <option value="17:00">5:00 PM</option>
+                                <option value="18:00">6:00 PM</option>
+                                <option value="19:00">7:00 PM</option>
+                                <option value="20:00">8:00 PM</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group full">
+                        <label for="occasion">Special Occasion</label>
+                        <select id="occasion" name="occasion">
+                            <option value="">None</option>
+                            <option value="birthday">Birthday</option>
+                            <option value="anniversary">Anniversary</option>
+                            <option value="business">Business Dinner</option>
+                            <option value="date">Date Night</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group full">
+                        <label for="message">Special Requests</label>
+                        <textarea id="message" name="message" placeholder="Dietary requirements, seating preferences, etc."></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">Request Reservation</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hours Section -->
+    <section class="hours" id="hours">
+        <div class="hours-container">
+            <div class="section-header">
+                <div class="section-icon">🕐</div>
+                <span class="section-tag">Plan Your Visit</span>
+                <h2 class="section-title">Opening Hours</h2>
+                <p class="section-desc">Outdoor, indoor & takeaway dining available</p>
+            </div>
+            <div class="hours-grid">
+                <div class="hours-card">
+                    <div class="hours-card-icon">☀️</div>
+                    <h3>Lunch Service</h3>
+                    <div class="hours-item">
+                        <span class="hours-day">Monday</span>
+                        <span class="hours-time">Closed</span>
+                    </div>
+                    <div class="hours-item">
+                        <span class="hours-day">Tue - Thu</span>
+                        <span class="hours-time">12:00 - 4:00 PM</span>
+                    </div>
+                    <div class="hours-item">
+                        <span class="hours-day">Fri - Sat</span>
+                        <span class="hours-time">12:00 - 4:00 PM</span>
+                    </div>
+                    <div class="hours-item">
+                        <span class="hours-day">Sunday</span>
+                        <span class="hours-time">12:00 - 4:00 PM</span>
+                    </div>
+                </div>
+                <div class="hours-card">
+                    <div class="hours-card-icon">🌙</div>
+                    <h3>Dinner Service</h3>
+                    <div class="hours-item">
+                        <span class="hours-day">Monday</span>
+                        <span class="hours-time">5:00 - 9:00 PM</span>
+                    </div>
+                    <div class="hours-item">
+                        <span class="hours-day">Tue - Thu</span>
+                        <span class="hours-time">4:00 - 9:00 PM</span>
+                    </div>
+                    <div class="hours-item">
+                        <span class="hours-day">Fri - Sat</span>
+                        <span class="hours-time">4:00 - 9:30 PM</span>
+                    </div>
+                    <div class="hours-item">
+                        <span class="hours-day">Sunday</span>
+                        <span class="hours-time">4:00 - 9:00 PM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2465.7!2d-8.39!3d51.82!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sCarrigaline%2C%20Cork%2C%20Ireland!5e0!3m2!1sen!2sie!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <div class="map-overlay">
+            <h3>Find Us</h3>
+            <p>1A Owenabue Mall<br>Main Street, Carrigaline<br>County Cork, Ireland<br><br>Easy parking available nearby</p>
+            <a href="https://goo.gl/maps/carrigaline" target="_blank" class="directions-btn">
+                Get Directions
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <div class="newsletter">
+        <div class="newsletter-container">
+            <h3>Join Our Family</h3>
+            <p>Subscribe for exclusive offers, events & seasonal menu updates</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    Romano
+                    <span>Ristorante</span>
+                </a>
+                <p>Authentic Italian cuisine in the heart of Carrigaline. Serving Cork with passion and fresh ingredients.</p>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/share/1DKAAe3gPe/" target="_blank" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+                    <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg></a>
+                    <a href="#" aria-label="TripAdvisor"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><circle cx="6.5" cy="13.5" r="2.5"/><circle cx="17.5" cy="13.5" r="2.5"/></svg></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#categories">Our Menu</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#takeaway">Take Away</a></li>
+                    <li><a href="#reservation">Reservations</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="tel:0214919019">021 491 9019</a></li>
+                    <li><a href="tel:0874430140">087 443 0140</a></li>
+                    <li><a href="mailto:romanotoni8@gmail.com">Email Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Location</h4>
+                <ul>
+                    <li><a href="#">1A Owenabue Mall</a></li>
+                    <li><a href="#">Main Street</a></li>
+                    <li><a href="#">Carrigaline, Cork</a></li>
+                    <li><a href="#">Ireland</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Ristorante Romano Carrigaline. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 15l-6-6-6 6"/>
+        </svg>
+    </button>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/353874430140?text=Hi!%20I'd%20like%20to%20make%20a%20reservation" class="whatsapp-btn" target="_blank" aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <img src="" alt="" class="lightbox-content" id="lightboxImg">
+    </div>
+
+    <script>
+        // Preloader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('preloader').classList.add('hidden');
+            }, 1500);
+        });
+
+        // Custom Cursor
+        const cursor = document.getElementById('cursor');
+        if (window.innerWidth > 768) {
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+
+            document.querySelectorAll('a, button, .category-card, .gallery-item').forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+            });
+        }
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+                backToTop.classList.add('visible');
+            } else {
+                navbar.classList.remove('scrolled');
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileToggle.addEventListener('click', () => {
+            mobileToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Menu tabs
+        const menuTabs = document.querySelectorAll('.menu-tab');
+        const menuCategories = document.querySelectorAll('.menu-category');
+        const dietaryFilters = document.querySelectorAll('.dietary-filter');
+
+        menuTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                menuTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                menuCategories.forEach(cat => cat.classList.remove('active'));
+                document.getElementById(tab.dataset.tab)?.classList.add('active');
+
+                dietaryFilters.forEach(f => f.classList.remove('active'));
+                document.querySelector('[data-filter="all"]').classList.add('active');
+                filterMenuItems('all');
+            });
+        });
+
+        // Dietary filters
+        dietaryFilters.forEach(filter => {
+            filter.addEventListener('click', () => {
+                dietaryFilters.forEach(f => f.classList.remove('active'));
+                filter.classList.add('active');
+                filterMenuItems(filter.dataset.filter);
+            });
+        });
+
+        function filterMenuItems(filterType) {
+            const activeCategory = document.querySelector('.menu-category.active');
+            if (!activeCategory) return;
+
+            activeCategory.querySelectorAll('.menu-item').forEach(item => {
+                if (filterType === 'all') {
+                    item.classList.remove('hidden');
+                } else {
+                    const dietary = item.dataset.dietary || '';
+                    item.classList.toggle('hidden', !dietary.includes(filterType));
+                }
+            });
+        }
+
+        // Back to top
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Form submission
+        document.getElementById('reservationForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your reservation request! We will contact you shortly to confirm.');
+            e.target.reset();
+        });
+
+        // Set minimum date
+        document.getElementById('date').min = new Date().toISOString().split('T')[0];
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // Lightbox
+        function openLightbox(el) {
+            const img = el.querySelector('img');
+            document.getElementById('lightboxImg').src = img.src;
+            document.getElementById('lightbox').classList.add('active');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closeLightbox();
+        });
+
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '-50px' });
+
+        document.querySelectorAll('section, .category-card, .menu-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
